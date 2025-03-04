@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Textbooks for {{ course_code }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Available Textbooks for {{ course_code }}</h1>
+
+    {% if textbooks %}
+        <ul>
+        {% for book in textbooks %}
+            <li>
+                <strong>Title:</strong> {{ book.title }}<br>
+                <strong>Author:</strong> {{ book.author }}<br>
+                {% if book.edition %}
+                    <strong>Edition:</strong> {{ book.edition }}<br>
+                {% endif %}
+                <strong>Condition:</strong> {{ book.condition }}
+            </li>
+            <hr>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No textbooks currently available for this course.</p>
+    {% endif %}
+</body>
+</html>
